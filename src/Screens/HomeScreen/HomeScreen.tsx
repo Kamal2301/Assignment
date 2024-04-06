@@ -15,14 +15,14 @@ function HomeScreen() {
   const [data, setData] = useState<any>('');
   const [isLoading, setIsLoading] = useState(true);
   const [textValue, setTextValue] = useState<Array<string>>([]);
-  const [selected, setSelectd] = useState(textValue[0]);
+  const [selected, setSelected] = useState(textValue[0]);
 
   useEffect(() => {
     fetch('https://harpreetcd.github.io/reactnative.json')
       .then(response => response.json())
       .then(json => {
         setData(json);
-        setSelectd(Object?.keys(json)[0]);
+        setSelected(Object?.keys(json)[0]);
         setTextValue(Object?.keys(json));
         setIsLoading(false);
       })
@@ -48,7 +48,7 @@ function HomeScreen() {
                     key={index}
                     item={_item}
                     selected={selected}
-                    setSelectd={setSelectd}
+                    setSelected={setSelected}
                   />
                 );
               })}
