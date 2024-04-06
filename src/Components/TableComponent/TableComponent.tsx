@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   cell: {
     flex: 1,
     margin: 2,
-    fontSize: 13,
+    fontSize: 12,
   },
 });
 

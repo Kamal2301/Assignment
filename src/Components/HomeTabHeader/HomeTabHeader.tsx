@@ -10,26 +10,24 @@ type HomeTabHeaderProps = {
 function HomeTabHeader(props: HomeTabHeaderProps) {
   const {item: _item, selected, setSelectd} = props;
   return (
-    <Fragment>
-      <Pressable
-        onPress={() => {
-          setSelectd(_item);
-        }}>
-        <View
+    <Pressable
+      onPress={() => {
+        setSelectd(_item);
+      }}>
+      <View
+        style={[
+          styles.container,
+          {borderBottomWidth: selected === _item ? 2 : 0},
+        ]}>
+        <Text
           style={[
-            styles.container,
-            {borderBottomWidth: selected === _item ? 2 : 0},
+            styles.heading,
+            {color: selected === _item ? 'black' : 'gray'},
           ]}>
-          <Text
-            style={[
-              styles.heading,
-              {color: selected === _item ? 'black' : 'gray'},
-            ]}>
-            {_item}
-          </Text>
-        </View>
-      </Pressable>
-    </Fragment>
+          {_item}
+        </Text>
+      </View>
+    </Pressable>
   );
 }
 

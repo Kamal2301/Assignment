@@ -16,28 +16,26 @@ function SubHomeTab(props: SubHomeTabProps) {
   const showTab = Array.isArray(_item[selected]);
 
   return (
-    <Fragment>
-      <View style={{backgroundColor: 'white'}}>
-        <View style={styles.subcontainer}>
-          <ScrollView showsHorizontalScrollIndicator={false} horizontal>
-            {_subData?.map((_item, index) => {
-              return (
-                <HomeTabHeader
-                  item={_item}
-                  selected={selected}
-                  setSelectd={setSelectd}
-                />
-              );
-            })}
-          </ScrollView>
-        </View>
-        {showTab ? (
-          <DetailHome data={_item[selected] ?? []} />
-        ) : (
-          <SubHomeTab data={_item} />
-        )}
+    <View style={{backgroundColor: 'white'}}>
+      <View style={styles.subcontainer}>
+        <ScrollView showsHorizontalScrollIndicator={false} horizontal>
+          {_subData?.map((_item, index) => {
+            return (
+              <HomeTabHeader
+                item={_item}
+                selected={selected}
+                setSelectd={setSelectd}
+              />
+            );
+          })}
+        </ScrollView>
       </View>
-    </Fragment>
+      {showTab ? (
+        <DetailHome data={_item[selected] ?? []} />
+      ) : (
+        <SubHomeTab data={_item} />
+      )}
+    </View>
   );
 }
 const styles = StyleSheet.create({

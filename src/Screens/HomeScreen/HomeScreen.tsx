@@ -22,7 +22,6 @@ function HomeScreen() {
       .then(response => response.json())
       .then(json => {
         setData(json);
-        setIsLoading(false);
         setSelectd(Object?.keys(json)[0]);
         setTextValue(Object?.keys(json));
         setIsLoading(false);
@@ -34,7 +33,6 @@ function HomeScreen() {
   }, []);
 
   const showTab = Array.isArray(data[selected]);
-  // const showTabData =  ?? {};
 
   return (
     <Fragment>
@@ -44,9 +42,10 @@ function HomeScreen() {
         <View style={styles.container}>
           <View style={styles.subContainer}>
             <ScrollView showsHorizontalScrollIndicator={false} horizontal>
-              {textValue?.map(_item => {
+              {textValue?.map((_item, index) => {
                 return (
                   <HomeTabHeader
+                    key={index}
                     item={_item}
                     selected={selected}
                     setSelectd={setSelectd}
