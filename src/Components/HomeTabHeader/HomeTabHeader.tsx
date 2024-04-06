@@ -4,15 +4,15 @@ import {Pressable, StyleSheet, Text, View} from 'react-native';
 type HomeTabHeaderProps = {
   item: string;
   selected: string;
-  setSelectd: any;
+  setSelected: any;
 };
 
 function HomeTabHeader(props: HomeTabHeaderProps) {
-  const {item: _item, selected, setSelectd} = props;
+  const {item: _item, selected, setSelected} = props;
   return (
     <Pressable
       onPress={() => {
-        setSelectd(_item);
+        setSelected(_item);
       }}>
       <View
         style={[
