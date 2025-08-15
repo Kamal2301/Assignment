@@ -1,0 +1,20 @@
+export type LOGIN_RESPONSE = {
+  Details: '';
+  Email: null;
+  EmpId: null;
+  EmployeeCode: null;
+  EmployeeName: null;
+  FintechDashboardVisibility: null;
+  HrEmail: null;
+  HrEmpcode: 0;
+  IsActive: null;
+  IsRM: false;
+  Message: string;
+  Mobile: null;
+  ProfileImagePath: null;
+  Status: string;
+  Token: null;
+  UType: null;
+  UserId: null;
+  UserType: null;
+};
