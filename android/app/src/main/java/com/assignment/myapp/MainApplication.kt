@@ -1,4 +1,4 @@
-package com.margpower
+package com.assignment.myapp
 
 import android.app.Application
 import com.facebook.react.PackageList
