@@ -1,24 +1,31 @@
 import {createStore, combineReducers} from 'redux';
 import {persistStore, persistReducer} from 'redux-persist';
-import {authReducer} from './authSlice';
-import {hrAuthReducer} from './hrAuthSlice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {checkinReducer} from './checkInSlice';
+import roleReducer from './roleSlice';
+import auditReducer from './auditSlice';
+import {Audit} from './types';
 
 const rootReducer = combineReducers({
-  auth: authReducer,
-  hrAuth: hrAuthReducer,
-  checkIn: checkinReducer,
+  role: roleReducer,
+  audit: auditReducer,
 });
 
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['auth'],
+  whitelist: ['role', 'audit'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = createStore(persistedReducer);
-
 export const persistor = persistStore(store);
+
+export type RootState = {
+  role: {
+    role: string | null;
+  };
+  audit: {
+    audits: Audit[];
+  };
+};
