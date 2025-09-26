@@ -1,98 +1,112 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
   TouchableOpacity,
   StyleSheet,
-  ImageBackground,
+  Image,
+  StatusBar,
+  SafeAreaView,
 } from 'react-native';
-import {useDispatch} from 'react-redux';
-import {setRole} from '../../redux/roleSlice';
+import {Images} from '../../Assets/images';
 import scaler from '../../Utils/scaler';
+import LoginForm from '../../Module/AuthModule/Components/LoginForm';
+import SignupForm from '../../Module/AuthModule/Components/SignupForm';
 
-export default function LoginScreen() {
-  const dispatch = useDispatch();
+const LoginScreen = () => {
+  const [activeTab, setActiveTab] = useState<'login' | 'signup'>('login');
 
-  const handleSelectRole = (role: string) => {
-    dispatch(setRole(role));
-    // navigation.navigate('Home');
-  };
-  console.log('asdasdas');
   return (
-    <ImageBackground
-      source={{
-        uri: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1',
-      }}
-      style={styles.background}
-      resizeMode="cover">
-      <View style={styles.overlay}>
-        <Text style={styles.header}>Internal Audit App</Text>
-        <Text style={styles.subHeader}>Select your role to continue</Text>
+    <SafeAreaView style={styles.safeArea}>
+      <StatusBar hidden translucent backgroundColor="transparent" />
 
-        <View style={styles.roleRow}>
-          <TouchableOpacity
-            style={[styles.roleBtn, styles.admin]}
-            onPress={() => handleSelectRole('Admin')}>
-            <Text style={styles.roleText}>Admin</Text>
-          </TouchableOpacity>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <View style={styles.headerSpacer} />
+          <Image
+            source={Images.logo}
+            style={styles.logo}
+            resizeMode="contain"
+          />
 
-          <TouchableOpacity
-            style={[styles.roleBtn, styles.auditor]}
-            onPress={() => handleSelectRole('Auditor')}>
-            <Text style={styles.roleText}>Auditor</Text>
-          </TouchableOpacity>
+          <View style={styles.tabContainer}>
+            <TouchableOpacity onPress={() => setActiveTab('login')}>
+              <Text
+                style={[
+                  styles.tabText,
+                  activeTab === 'login' && styles.activeTabText,
+                ]}>
+                Login
+              </Text>
+              {activeTab === 'login' && <View style={styles.activeIndicator} />}
+            </TouchableOpacity>
 
-          <TouchableOpacity
-            style={[styles.roleBtn, styles.viewer]}
-            onPress={() => handleSelectRole('Viewer')}>
-            <Text style={styles.roleText}>Viewer</Text>
-          </TouchableOpacity>
+            <TouchableOpacity onPress={() => setActiveTab('signup')}>
+              <Text
+                style={[
+                  styles.tabText,
+                  activeTab === 'signup' && styles.activeTabText,
+                ]}>
+                Sign-up
+              </Text>
+              {activeTab === 'signup' && (
+                <View style={styles.activeIndicator} />
+              )}
+            </TouchableOpacity>
+          </View>
         </View>
+
+        <View style={styles.formSpacer} />
+
+        {activeTab === 'login' ? <LoginForm /> : <SignupForm />}
       </View>
-    </ImageBackground>
+    </SafeAreaView>
   );
-}
+};
+
+export default LoginScreen;
 
 const styles = StyleSheet.create({
-  background: {
+  safeArea: {
     flex: 1,
   },
-  overlay: {
+  container: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.4)',
-    paddingHorizontal: scaler(20),
-    justifyContent: 'center',
+    backgroundColor: '#fff',
   },
   header: {
-    fontSize: scaler(28),
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginBottom: scaler(10),
-    color: '#fff',
+    backgroundColor: '#F6F5FA',
+    alignItems: 'center',
+    borderBottomEndRadius: scaler(28),
+    borderBottomStartRadius: scaler(28),
   },
-  subHeader: {
-    fontSize: scaler(16),
-    textAlign: 'center',
-    marginBottom: scaler(40),
-    color: '#ddd',
+  headerSpacer: {
+    height: scaler(50),
+    backgroundColor: '#fff',
   },
-  roleRow: {
+  logo: {
+    width: scaler(200),
+    height: scaler(100),
+    marginVertical: 20,
+  },
+  tabContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
   },
-  roleBtn: {
-    paddingVertical: scaler(15),
-    paddingHorizontal: scaler(20),
-    borderRadius: scaler(12),
-    elevation: scaler(5),
+  tabText: {
+    fontWeight: '700',
+    fontSize: 18,
+    marginHorizontal: 30,
+    paddingBottom: 10,
+    color: '#999',
   },
-  roleText: {
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: scaler(16),
-    textAlign: 'center',
+  activeTabText: {
+    color: '#000',
   },
-  admin: {backgroundColor: '#E74C3C'},
-  auditor: {backgroundColor: '#3498DB'},
-  viewer: {backgroundColor: '#2ECC71'},
+  activeIndicator: {
+    height: scaler(3),
+    backgroundColor: '#557FD1',
+  },
+  formSpacer: {
+    height: scaler(40),
+  },
 });

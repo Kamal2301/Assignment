@@ -21,6 +21,7 @@
     "react-native": "0.78.2",
     "react-native-gesture-handler": "^2.25.0",
     "react-native-image-crop-picker": "^0.42.0",
+    "react-native-keyboard-avoiding-scroll-view": "^1.0.1",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-permissions": "^5.4.0",
     "react-native-pixel-perfect": "^1.0.2",
