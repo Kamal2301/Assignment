@@ -119,11 +119,11 @@ const styles = StyleSheet.create({
     borderBottomStartRadius: scaler(28),
   },
   headerSpacer: {
-    height: scaler(80),
+    height: scaler(60),
     backgroundColor: '#fff',
   },
   logo: {
-    width: 120,
+    width: 200,
     height: 80,
     marginVertical: 20,
   },
